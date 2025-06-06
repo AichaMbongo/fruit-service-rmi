@@ -19,41 +19,8 @@ The design follows a distributed, command-based approach where each task object 
 
 📂 Folder Structure (Maven Layout with File Descriptions)
 ----------------------------------------------------------
-fruit-service-rmi/
-├── pom.xml                               // Maven build file: dependencies, Java version, WAR packaging config
-├── src/
-│   ├── main/
-│   │   ├── java/
-│   │   │   └── com/example/fruitservice/
-│   │   │       ├── rmi/
-│   │   │       │   ├── Compute.java      // RMI interface: defines remote method `executeTask(Task<T>)`
-│   │   │       │   └── Task.java         // Generic interface for all executable RMI task objects
-│   │   │       ├── tasks/
-│   │   │       │   ├── AddFruitPrice.java        // Task to add a new fruit and price to the table
-│   │   │       │   ├── UpdateFruitPrice.java     // Task to update the price of an existing fruit
-│   │   │       │   ├── DeleteFruitPrice.java     // Task to delete a fruit entry by name
-│   │   │       │   ├── CalFruitCost.java         // Task to calculate total cost = price × quantity
-│   │   │       │   └── CalculateCost.java        // Task to generate a full receipt: cost, amount, change, cashier ID
-│   │   │       ├── engine/
-│   │   │       │   └── FruitComputeEngine.java   // The RMI engine: receives tasks, executes them, stores fruit data in memory
-│   │   │       ├── client/
-│   │   │       │   └── FruitComputeTaskRegistry.java  // A standalone test client to send tasks to the RMI server and print results
-│   │   │       └── servlet/
-│   │   │           └── FruitControllerServlet.java    // Central controller servlet: receives HTTP requests, maps them to RMI tasks
-│   │   └── webapp/
-│   │       └── WEB-INF/
-│   │           └── web.xml                // (Optional) Servlet deployment descriptor, only needed if not using @WebServlet
-│   └── test/
-│       └── java/
-│           └── com/example/fruitservice/tasks/
-│               ├── AddFruitPriceTest.java        // JUnit test for AddFruitPrice logic
-│               ├── UpdateFruitPriceTest.java     // JUnit test for UpdateFruitPrice
-│               ├── DeleteFruitPriceTest.java     // JUnit test for DeleteFruitPrice
-│               ├── CalFruitCostTest.java         // JUnit test for cost calculation
-│               └── CalculateCostTest.java        // JUnit test for receipt generation
-└── target/
-    └── fruit-service.war               // Auto-generated WAR file after `mvn clean package` (ready for Tomcat)
 
+![img.png](img.png)
 🧠 Modular Tasks Implemented
 ----------------------------
 1. **AddFruitPrice** – Adds a new fruit and price to the fruit-price table.
