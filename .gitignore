@@ -27,3 +27,30 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+# === BUILD & COMPILED FILES ===
+*.class
+*.war
+*.jar
+*.log
+*.iml
+target/
+build/
+build.gradle.lockfile
+.gradle/
+.idea/
+
+# === OS / ENVIRONMENT ===
+*.swp
+*.swo
+*.tmp
+
+# === JAVA / RMI ===
+*.policy
+*.rmiregistry
+
+# === TOMCAT DEPLOYMENT OUTPUT ===
+webapps/
+logs/
+temp/
+work/
