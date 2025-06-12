@@ -13,7 +13,7 @@ public class AddFruitPrice implements Task<String>, Serializable {
     public String execute() {
         // Here you would add logic to store the fruit and price, e.g., in a database or map.
         // For demonstration, we'll just return a confirmation string.
-        return "Added " + fruitName + " with price $" + price;
+        return "Added. " + fruitName + " with price $" + price;
     }
 
     public String getFruitName() {
