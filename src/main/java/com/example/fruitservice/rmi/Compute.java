@@ -1,8 +1,9 @@
-// interface Compute
-package com.example.fruitservice.rmi;
+package com.example.fruitservice.rmi;// interface Compute
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+
+import com.example.fruitservice.rmi.Task; // Commented out or update this line if Task is in a different package
 
 /**
  * Defines the remote interface for a compute engine capable of executing tasks.
