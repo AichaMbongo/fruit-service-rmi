@@ -1,4 +1,8 @@
 package com.example.fruitservice.rmi;
 
-public class Task<T> {
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
+public interface Task extends Remote {
+    String executeTask(String fruitName) throws RemoteException;
 }
