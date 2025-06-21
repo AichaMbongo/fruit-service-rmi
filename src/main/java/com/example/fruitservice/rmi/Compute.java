@@ -1,24 +1,19 @@
-package com.example.fruitservice.rmi;// interface Compute
+package com.example.fruitservice.rmi;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-// Note: Interfaces cannot directly instantiate objects, including UnicastRemoteObject.
-// However, you can create an implementation class for the Compute interface and instantiate UnicastRemoteObject there.
-
-import com.example.fruitservice.rmi.Task; // Commented out or update this line if Task is in a different package
-import java.rmi.server.UnicastRemoteObject;
 
 /**
- * Defines the remote interface for a compute engine capable of executing tasks.
+ * Remote interface for executing tasks submitted by clients.
  */
 public interface Compute extends Remote {
     /**
-     * Executes the given task and returns its result.
-     * 
-     * @param <T> The type of the result returned by the task.
-     * @param t   The task to be executed.
-     * @return The result of the task execution.
-     * @throws RemoteException if a remote communication error occurs.
+     * Executes a given task and returns the result.
+     *
+     * @param <T> The type of result returned by the task.
+     * @param task The task to be executed.
+     * @return The result of executing the task.
+     * @throws RemoteException If a communication-related error occurs.
      */
-    <T> T executeTask(Task t) throws RemoteException;
+    <T> T executeTask(Task<T> task) throws RemoteException;
 }
