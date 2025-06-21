@@ -92,7 +92,7 @@ Each class:
 
 📌 Technologies Used
 ---------------------
-- Java 24
+- Java 24 and Java 21
 - Apache Maven
 - Jakarta Servlet API 5.0
 - Tomcat 10+
@@ -104,5 +104,5 @@ Each class:
 
 👥 Contributors
 ---------------
-- Developer 1: Aicha 
-- Developer 2: David 
+- Developer 1: Aicha
+- Developer 2: David
