@@ -60,13 +60,13 @@ public class FruitComputeTaskRegistry {
                         System.out.println("UpdateFruitPrice result: " + updateResult);
                         break;
 
-                    // case 3: // Delete fruit
-                    //     System.out.print("Enter fruit name: ");
-                    //     String deleteName = scanner.nextLine();
-                    //     DeleteFruitPrice deleteTask = new DeleteFruitPrice(deleteName);
-                    //     String deleteResult = engine.executeTask(deleteTask);
-                    //     System.out.println("DeleteFruitPrice result: " + deleteResult);
-                    //     break;
+                    case 3: // Delete fruit
+                         System.out.print("Enter fruit name: ");
+                         String deleteName = scanner.nextLine();
+                         DeleteFruitPrice deleteTask = new DeleteFruitPrice(deleteName);
+                         String deleteResult = engine.executeTask(deleteTask);
+                         System.out.println("DeleteFruitPrice result: " + deleteResult);
+                         break;
 
                      case 4: // Calculate fruit cost
                          System.out.print("Enter fruit name: ");
