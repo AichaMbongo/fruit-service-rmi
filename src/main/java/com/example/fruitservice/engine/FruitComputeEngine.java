@@ -33,17 +33,17 @@ public class FruitComputeEngine extends UnicastRemoteObject implements Compute {
             return (T) ("Fruit '" + fruit + "' added with price " + price);
         }
 
-        // // UpdateFruitPrice
-        // if (t instanceof UpdateFruitPrice) {
-        //     UpdateFruitPrice task = (UpdateFruitPrice) t;
-        //     String fruit = task.getFruitName();
-        //     double newPrice = task.getNewPrice();
-        //     if (!fruitPriceTable.containsKey(fruit)) {
-        //         return (T) ("Error: Fruit '" + fruit + "' not found for update.");
-        //     }
-        //     fruitPriceTable.put(fruit, newPrice);
-        //     return (T) ("Price for '" + fruit + "' updated to " + newPrice);
-        // }
+        // UpdateFruitPrice
+        if (t instanceof UpdateFruitPrice) {
+            UpdateFruitPrice task = (UpdateFruitPrice) t;
+            String fruit = task.getFruitName();
+            double newPrice = task.getNewPrice();
+            if (!fruitPriceTable.containsKey(fruit)) {
+                return (T) ("Error: Fruit '" + fruit + "' not found for update.");
+            }
+            fruitPriceTable.put(fruit, newPrice);
+            return (T) ("Price for '" + fruit + "' updated to " + newPrice);
+        }
 
         // // DeleteFruitPrice
         // if (t instanceof DeleteFruitPrice) {
