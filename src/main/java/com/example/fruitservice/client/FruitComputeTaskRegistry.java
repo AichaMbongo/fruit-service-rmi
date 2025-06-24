@@ -68,35 +68,35 @@ public class FruitComputeTaskRegistry {
                     //     System.out.println("DeleteFruitPrice result: " + deleteResult);
                     //     break;
 
-                    // case 4: // Calculate fruit cost
-                    //     System.out.print("Enter fruit name: ");
-                    //     String costName = scanner.nextLine();
-                    //     System.out.print("Enter quantity: ");
-                    //     int quantity = scanner.nextInt();
-                    //     scanner.nextLine(); // Consume newline
-                    //     CalFruitCost calcTask = new CalFruitCost(costName, quantity);
-                    //     Double costResult = engine.executeTask(calcTask);
-                    //     if (costResult == -1.0) {
-                    //         System.out.println("Fruit not found.");
-                    //     } else {
-                    //         System.out.println("Total cost: " + costResult);
-                    //     }
-                    //     break;
+                     case 4: // Calculate fruit cost
+                         System.out.print("Enter fruit name: ");
+                         String costName = scanner.nextLine();
+                         System.out.print("Enter quantity: ");
+                         int quantity = scanner.nextInt();
+                         scanner.nextLine(); // Consume newline
+                         CalFruitCost calcTask = new CalFruitCost(costName, quantity);
+                         Double costResult = engine.executeTask(calcTask);
+                         if (costResult == -1.0) {
+                             System.out.println("Fruit not found.");
+                         } else {
+                             System.out.println("Total cost: " + costResult);
+                         }
+                         break;
 
-                    // case 5: // Print receipt
-                    //     System.out.print("Enter fruit name: ");
-                    //     String receiptName = scanner.nextLine();
-                    //     System.out.print("Enter quantity: ");
-                    //     int receiptQty = scanner.nextInt();
-                    //     System.out.print("Enter amount given: ");
-                    //     double amountGiven = scanner.nextDouble();
-                    //     scanner.nextLine(); // Consume newline
-                    //     System.out.print("Enter cashier ID: ");
-                    //     String cashierId = scanner.nextLine();
-                    //     CalculateCost receiptTask = new CalculateCost(receiptName, receiptQty, amountGiven, cashierId);
-                    //     String receipt = engine.executeTask(receiptTask);
-                    //     System.out.println("Receipt:\n" + receipt);
-                    //     break;
+                     case 5: // Print receipt
+                         System.out.print("Enter fruit name: ");
+                         String receiptName = scanner.nextLine();
+                         System.out.print("Enter quantity: ");
+                         int receiptQty = scanner.nextInt();
+                         System.out.print("Enter amount given: ");
+                         double amountGiven = scanner.nextDouble();
+                         scanner.nextLine(); // Consume newline
+                         System.out.print("Enter cashier ID: ");
+                         String cashierId = scanner.nextLine();
+                         CalculateCost receiptTask = new CalculateCost(receiptName, receiptQty, amountGiven, cashierId);
+                         String receipt = engine.executeTask(receiptTask);
+                         System.out.println("Receipt:\n" + receipt);
+                         break;
 
                     default:
                         System.out.println("Invalid choice. Try again.");
