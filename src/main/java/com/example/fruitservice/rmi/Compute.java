@@ -2,6 +2,7 @@ package com.example.fruitservice.rmi;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.Map;
 
 /**
  * Remote interface for executing tasks submitted by clients.
@@ -16,4 +17,7 @@ public interface Compute extends Remote {
      * @throws RemoteException If a communication-related error occurs.
      */
     <T> T executeTask(Task<T> task) throws RemoteException;
+    Map<String, Double> ListFruits() throws RemoteException;
+
+    
 }
