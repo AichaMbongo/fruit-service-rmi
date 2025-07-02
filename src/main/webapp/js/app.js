@@ -1,10 +1,10 @@
+// Set your base servlet URL here (update if your context path changes)
+const BASE_URL = '/my-app-0.0.1-SNAPSHOT/fruitService';
+
 // Tab switching logic
 function openTab(evt, tabName) {
-    // Hide all tabcontent
     document.querySelectorAll('.tabcontent').forEach(tab => tab.style.display = "none");
-    // Remove 'active' class from all tablinks
     document.querySelectorAll('.tablink').forEach(tab => tab.classList.remove("active"));
-    // Show selected tab and set active
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.classList.add("active");
 }
@@ -35,7 +35,7 @@ document.getElementById("addFruitForm").onsubmit = async function(e) {
     params.append("fruitName", form.fruitName.value);
     params.append("price", form.price.value);
 
-    const response = await fetch("/fruitService", {
+    const response = await fetch(BASE_URL, {
         method: "POST",
         headers: {"Content-Type": "application/x-www-form-urlencoded"},
         body: params
@@ -45,6 +45,7 @@ document.getElementById("addFruitForm").onsubmit = async function(e) {
         let json = JSON.parse(text);
         showAlert("alertAdd", json.status, json.message);
         showResult("resultAdd", JSON.stringify(json, null, 2));
+        fetchFruits(); // Refresh list after adding
     } catch {
         showAlert("alertAdd", "success", "Operation completed.");
         showResult("resultAdd", text);
@@ -60,7 +61,7 @@ document.getElementById("updateFruitForm").onsubmit = async function(e) {
     params.append("fruitName", form.fruitName.value);
     params.append("newPrice", form.newPrice.value);
 
-    const response = await fetch("/fruitService", {
+    const response = await fetch(BASE_URL, {
         method: "POST",
         headers: {"Content-Type": "application/x-www-form-urlencoded"},
         body: params
@@ -70,6 +71,7 @@ document.getElementById("updateFruitForm").onsubmit = async function(e) {
         let json = JSON.parse(text);
         showAlert("alertUpdate", json.status, json.message);
         showResult("resultUpdate", JSON.stringify(json, null, 2));
+        fetchFruits(); // Refresh list after update
     } catch {
         showAlert("alertUpdate", "success", "Operation completed.");
         showResult("resultUpdate", text);
@@ -84,7 +86,7 @@ document.getElementById("deleteFruitForm").onsubmit = async function(e) {
     params.append("action", "deleteFruit");
     params.append("fruitName", form.fruitName.value);
 
-    const response = await fetch("/fruitService", {
+    const response = await fetch(BASE_URL, {
         method: "POST",
         headers: {"Content-Type": "application/x-www-form-urlencoded"},
         body: params
@@ -94,6 +96,7 @@ document.getElementById("deleteFruitForm").onsubmit = async function(e) {
         let json = JSON.parse(text);
         showAlert("alertDelete", json.status, json.message);
         showResult("resultDelete", JSON.stringify(json, null, 2));
+        fetchFruits(); // Refresh list after delete
     } catch {
         showAlert("alertDelete", "success", "Operation completed.");
         showResult("resultDelete", text);
@@ -109,7 +112,7 @@ document.getElementById("calculateCostForm").onsubmit = async function(e) {
     params.append("fruitName", form.fruitName.value);
     params.append("quantity", form.quantity.value);
 
-    const response = await fetch("/fruitService?" + params, {
+    const response = await fetch(`${BASE_URL}?${params}`, {
         method: "GET"
     });
     let text = await response.text();
@@ -138,7 +141,7 @@ document.getElementById("printReceiptForm").onsubmit = async function(e) {
     params.append("amountGiven", form.amountGiven.value);
     params.append("cashierId", form.cashierId.value);
 
-    const response = await fetch("/fruitService?" + params, {
+    const response = await fetch(`${BASE_URL}?${params}`, {
         method: "GET"
     });
     let text = await response.text();
@@ -158,18 +161,20 @@ document.getElementById("printReceiptForm").onsubmit = async function(e) {
     }
 };
 
+// Fetch and display fruit list
 async function fetchFruits() {
-    const response = await fetch("/fruitService?action=listFruits");
+    const response = await fetch(`${BASE_URL}?action=listFruits`);
     const alertDiv = document.getElementById("alertList");
     const tableBody = document.querySelector("#fruitTable tbody");
     tableBody.innerHTML = "";
     alertDiv.style.display = "none";
     try {
         const data = await response.json();
-        if (data.fruits && data.fruits.length > 0) {
-            data.fruits.forEach(fruit => {
+        // If your servlet returns an object like {"Apple":50,"Banana":30}
+        if (data && Object.keys(data).length > 0) {
+            Object.entries(data).forEach(([name, price]) => {
                 const row = document.createElement("tr");
-                row.innerHTML = `<td>${fruit.name}</td><td>${fruit.price}</td>`;
+                row.innerHTML = `<td>${name}</td><td>${price}</td>`;
                 tableBody.appendChild(row);
             });
         } else {
@@ -183,10 +188,16 @@ async function fetchFruits() {
         alertDiv.style.display = "block";
     }
 }
+
 // Initial fetch of fruits on page load 
 document.addEventListener("DOMContentLoaded", function() {
     fetchFruits();
-    // Set default tab
     document.querySelector(".tablink").click();
 });
-// Add event listener for tab links
+
+// Refresh fruit list when the "List Fruits" tab is clicked
+// Make sure your "List Fruits" tab button has id="listFruitsTab"
+const listFruitsTabBtn = document.getElementById("listFruitsTab");
+if (listFruitsTabBtn) {
+    listFruitsTabBtn.addEventListener("click", fetchFruits);
+}
