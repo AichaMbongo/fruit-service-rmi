@@ -201,3 +201,4 @@ const listFruitsTabBtn = document.getElementById("listFruitsTab");
 if (listFruitsTabBtn) {
     listFruitsTabBtn.addEventListener("click", fetchFruits);
 }
+//
