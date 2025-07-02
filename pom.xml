@@ -1,21 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Maven Project Object Model (POM) file for a Java web application.
+    This configuration is set up to build a WAR file for deployment on Tomcat.
+-->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                              http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
+    <!-- Maven model version -->
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.example</groupId>
-    <artifactId>my-app</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+
+    <!-- Project coordinates: group, artifact, version -->
+    <groupId>com.example</groupId>         <!-- Your project's group (like a namespace) -->
+    <artifactId>my-app</artifactId>        <!-- The name of your application -->
+    <version>0.0.1-SNAPSHOT</version>      <!-- Project version -->
+
+    <!-- Specify WAR packaging for web applications -->
+    <packaging>war</packaging>
 
     <dependencies>
+        <!--
+            Servlet API dependency.
+            'provided' scope means Tomcat will provide this at runtime,
+            so it won't be included in your WAR file.
+        -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>4.0.1</version>
             <scope>provided</scope>
         </dependency>
+
+        
+
+        <!--
+            Gson library for converting Java objects to JSON and vice versa.
+            This will be included in your WAR.
+        -->
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
@@ -23,4 +45,17 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <!--
+                Maven WAR plugin: builds your project as a WAR file.
+                The version is specified for clarity and stability.
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.4.0</version>
+            </plugin>
+        </plugins>
+    </build>
 </project>
