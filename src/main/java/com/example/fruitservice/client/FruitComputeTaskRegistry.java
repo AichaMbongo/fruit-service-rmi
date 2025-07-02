@@ -14,7 +14,7 @@ public class FruitComputeTaskRegistry {
             Registry registry = LocateRegistry.getRegistry("localhost", 1099);
 
             // Look up the remote Compute engine by the name you used in FruitServerMain
-            Compute engine = (Compute) registry.lookup("FruitCompute"); // or "FruitService" if that's your binding name
+            Compute engine = (Compute) registry.lookup("FruitService"); // or "FruitService" if that's your binding name
 
             Scanner scanner = new Scanner(System.in);
 
