@@ -188,7 +188,7 @@ Ensure ports **8080 (Tomcat)** and **1099 (RMI)** are open in your firewall.
 
 📦 Build Output
 ---------------
-→ target/fruit-service.war (deploy this to Tomcat)
+→ my-app-0.0.1-SNAPSHOT.war (deploy this to Tomcat)
 
 👥 Contributors
 ---------------
